@@ -1,0 +1,402 @@
+[
+  {
+    "WFWorkflowClientVersion": "754.2",
+    "WFWorkflowClientRelease": "2.1.3",
+    "WFWorkflowMinimumClientVersion": 411,
+    "WFWorkflowIcon": {
+      "WFWorkflowIconStartColor": 946986751,
+      "WFWorkflowIconImageData": {
+        "type": "Buffer",
+        "data": []
+      },
+      "WFWorkflowIconGlyphNumber": 59860
+    },
+    "WFWorkflowImportQuestions": [],
+    "WFWorkflowTypes": [
+      "WatchKit"
+    ],
+    "WFWorkflowInputContentItemClasses": [
+      "WFAppStoreAppContentItem",
+      "WFArticleContentItem",
+      "WFContactContentItem",
+      "WFDateContentItem",
+      "WFEmailAddressContentItem",
+      "WFGenericFileContentItem",
+      "WFImageContentItem",
+      "WFiTunesProductContentItem",
+      "WFLocationContentItem",
+      "WFDCMapsLinkContentItem",
+      "WFAVAssetContentItem",
+      "WFPDFContentItem",
+      "WFPhoneNumberContentItem",
+      "WFRichTextContentItem",
+      "WFSafariWebPageContentItem",
+      "WFStringContentItem",
+      "WFURLContentItem"
+    ],
+    "WFWorkflowActions": [
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.setvariable",
+        "WFWorkflowActionParameters": {
+          "WFVariableName": "Input"
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+        "WFWorkflowActionParameters": {
+          "WFConditionalActionString": "&",
+          "GroupingIdentifier": "F6433C8D-FE36-4FEC-B371-FED6DA7068DF",
+          "WFControlFlowMode": 0
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.gettext",
+        "WFWorkflowActionParameters": {
+          "WFTextActionText": {
+            "Value": {
+              "string": "￼￼",
+              "attachmentsByRange": {
+                "{1, 1}": {
+                  "VariableName": "Input",
+                  "Type": "Variable",
+                  "Aggrandizements": [
+                    {
+                      "Type": "WFCoercionVariableAggrandizement",
+                      "CoercionItemClass": "WFDictionaryContentItem"
+                    },
+                    {
+                      "Type": "WFDictionaryValueVariableAggrandizement",
+                      "DictionaryKey": "rightDec"
+                    }
+                  ]
+                },
+                "{0, 1}": {
+                  "VariableName": "Input",
+                  "Type": "Variable",
+                  "Aggrandizements": [
+                    {
+                      "Type": "WFCoercionVariableAggrandizement",
+                      "CoercionItemClass": "WFDictionaryContentItem"
+                    },
+                    {
+                      "Type": "WFDictionaryValueVariableAggrandizement",
+                      "DictionaryKey": "leftDec"
+                    }
+                  ]
+                }
+              }
+            },
+            "WFSerializationType": "WFTextTokenString"
+          },
+          "UUID": "C4D2BF6D-31A1-49F5-8FD6-7DD044168A9C"
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+        "WFWorkflowActionParameters": {
+          "WFCondition": "Equals",
+          "WFControlFlowMode": 0,
+          "WFConditionalActionString": "00",
+          "GroupingIdentifier": "49ECDD99-8515-4568-8621-739A2FFE0625",
+          "WFNumberValue": 0
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.gettext",
+        "WFWorkflowActionParameters": {
+          "UUID": "35E39A9E-23BC-4FF7-B94A-1481E1EAEC02",
+          "WFTextActionText": {
+            "Value": {
+              "string": "￼￼.￼",
+              "attachmentsByRange": {
+                "{0, 1}": {
+                  "VariableName": "Input",
+                  "Type": "Variable",
+                  "Aggrandizements": [
+                    {
+                      "Type": "WFCoercionVariableAggrandizement",
+                      "CoercionItemClass": "WFDictionaryContentItem"
+                    },
+                    {
+                      "Type": "WFDictionaryValueVariableAggrandizement",
+                      "DictionaryKey": "sign"
+                    }
+                  ]
+                },
+                "{1, 1}": {
+                  "VariableName": "Input",
+                  "Type": "Variable",
+                  "Aggrandizements": [
+                    {
+                      "Type": "WFCoercionVariableAggrandizement",
+                      "CoercionItemClass": "WFDictionaryContentItem"
+                    },
+                    {
+                      "Type": "WFDictionaryValueVariableAggrandizement",
+                      "DictionaryKey": "leftBin"
+                    }
+                  ]
+                },
+                "{3, 1}": {
+                  "VariableName": "Input",
+                  "Type": "Variable",
+                  "Aggrandizements": [
+                    {
+                      "Type": "WFCoercionVariableAggrandizement",
+                      "CoercionItemClass": "WFDictionaryContentItem"
+                    },
+                    {
+                      "Type": "WFDictionaryValueVariableAggrandizement",
+                      "DictionaryKey": "rightBin"
+                    }
+                  ]
+                }
+              }
+            },
+            "WFSerializationType": "WFTextTokenString"
+          }
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.text.replace",
+        "WFWorkflowActionParameters": {
+          "WFReplaceTextRegularExpression": true,
+          "WFReplaceTextReplace": "",
+          "WFReplaceTextCaseSensitive": false,
+          "UUID": "227693C7-86F6-45A4-AC93-253810FD6CA6",
+          "WFReplaceTextFind": "(?<=-|^)0*(?=\\d)|\\.?0*$"
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+        "WFWorkflowActionParameters": {
+          "GroupingIdentifier": "49ECDD99-8515-4568-8621-739A2FFE0625",
+          "WFControlFlowMode": 1
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.getvariable",
+        "WFWorkflowActionParameters": {
+          "WFVariable": {
+            "Value": {
+              "VariableName": "Input",
+              "Type": "Variable",
+              "Aggrandizements": [
+                {
+                  "Type": "WFCoercionVariableAggrandizement",
+                  "CoercionItemClass": "WFDictionaryContentItem"
+                },
+                {
+                  "Type": "WFDictionaryValueVariableAggrandizement",
+                  "DictionaryKey": "leftDec"
+                }
+              ]
+            },
+            "WFSerializationType": "WFTextTokenAttachment"
+          }
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.math",
+        "WFWorkflowActionParameters": {
+          "WFMathOperation": "…",
+          "CustomOutputName": "Integer Binary Digit",
+          "UUID": "4CBB3E95-4901-49A0-8C6B-7D3CD751BC31",
+          "WFScientificMathOperation": "Modulus",
+          "WFScientificMathOperand": 2
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.math",
+        "WFWorkflowActionParameters": {
+          "WFMathOperation": "-",
+          "WFMathOperand": {
+            "Value": {
+              "VariableName": "Input",
+              "Type": "Variable",
+              "Aggrandizements": [
+                {
+                  "Type": "WFCoercionVariableAggrandizement",
+                  "CoercionItemClass": "WFDictionaryContentItem"
+                },
+                {
+                  "Type": "WFDictionaryValueVariableAggrandizement",
+                  "DictionaryKey": "leftDec"
+                }
+              ]
+            },
+            "WFSerializationType": "WFTextTokenAttachment"
+          },
+          "UUID": "F256F942-7246-4EC7-A3E3-F8A5DEA99434"
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.math",
+        "WFWorkflowActionParameters": {
+          "WFMathOperation": "÷",
+          "CustomOutputName": "Integer Residual",
+          "UUID": "ECB21007-B62B-4279-BA7F-6801971AB63F",
+          "WFMathOperand": -2
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.getvariable",
+        "WFWorkflowActionParameters": {
+          "WFVariable": {
+            "Value": {
+              "VariableName": "Input",
+              "Type": "Variable",
+              "Aggrandizements": [
+                {
+                  "Type": "WFCoercionVariableAggrandizement",
+                  "CoercionItemClass": "WFDictionaryContentItem"
+                },
+                {
+                  "Type": "WFDictionaryValueVariableAggrandizement",
+                  "DictionaryKey": "rightDec"
+                }
+              ]
+            },
+            "WFSerializationType": "WFTextTokenAttachment"
+          }
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.math",
+        "WFWorkflowActionParameters": {
+          "WFMathOperation": "×",
+          "WFMathOperand": 2,
+          "UUID": "BFFCBF0B-D1A0-4C22-BF8C-44300BAED09A"
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.text.replace",
+        "WFWorkflowActionParameters": {
+          "WFReplaceTextRegularExpression": true,
+          "WFReplaceTextReplace": "bit=$1&fraction=0$2",
+          "CustomOutputName": "Right",
+          "UUID": "95EA6876-CF29-4F45-BAEE-DF3132B35A5E",
+          "WFReplaceTextCaseSensitive": false,
+          "WFReplaceTextFind": "(\\d)([.,]\\d+)?"
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.getvariable",
+        "WFWorkflowActionParameters": {
+          "WFVariable": {
+            "Value": {
+              "VariableName": "Input",
+              "Type": "Variable"
+            },
+            "WFSerializationType": "WFTextTokenAttachment"
+          }
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.text.replace",
+        "WFWorkflowActionParameters": {
+          "WFReplaceTextRegularExpression": true,
+          "WFReplaceTextReplace": {
+            "Value": {
+              "string": "leftDec=￼&leftBin=￼$2&rightDec=￼&rightBin=$4￼",
+              "attachmentsByRange": {
+                "{18, 1}": {
+                  "OutputUUID": "4CBB3E95-4901-49A0-8C6B-7D3CD751BC31",
+                  "Type": "ActionOutput",
+                  "OutputName": "Integer Binary Digit"
+                },
+                "{8, 1}": {
+                  "OutputUUID": "ECB21007-B62B-4279-BA7F-6801971AB63F",
+                  "Type": "ActionOutput",
+                  "OutputName": "Integer Residual"
+                },
+                "{44, 1}": {
+                  "Type": "ActionOutput",
+                  "OutputName": "Right",
+                  "OutputUUID": "95EA6876-CF29-4F45-BAEE-DF3132B35A5E",
+                  "Aggrandizements": [
+                    {
+                      "Type": "WFCoercionVariableAggrandizement",
+                      "CoercionItemClass": "WFDictionaryContentItem"
+                    },
+                    {
+                      "Type": "WFDictionaryValueVariableAggrandizement",
+                      "DictionaryKey": "bit"
+                    }
+                  ]
+                },
+                "{31, 1}": {
+                  "Type": "ActionOutput",
+                  "OutputName": "Right",
+                  "OutputUUID": "95EA6876-CF29-4F45-BAEE-DF3132B35A5E",
+                  "Aggrandizements": [
+                    {
+                      "Type": "WFCoercionVariableAggrandizement",
+                      "CoercionItemClass": "WFDictionaryContentItem"
+                    },
+                    {
+                      "Type": "WFDictionaryValueVariableAggrandizement",
+                      "DictionaryKey": "fraction"
+                    }
+                  ]
+                }
+              }
+            },
+            "WFSerializationType": "WFTextTokenString"
+          },
+          "UUID": "4DD0D34E-DBE4-4DA1-A139-8E5A786BF4E7",
+          "WFReplaceTextCaseSensitive": false,
+          "WFReplaceTextFind": "leftDec=(\\d+)&leftBin=(\\d*)&rightDec=(0[.,]?\\d*)&rightBin=(\\d*)"
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.runworkflow",
+        "WFWorkflowActionParameters": {
+          "WFShowWorkflow": false,
+          "WFWorkflowName": "ch-decimal to binary",
+          "UUID": "9FC3A93A-6F54-4043-B7AE-A909B92ED9E2"
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+        "WFWorkflowActionParameters": {
+          "UUID": "B6D862EF-EDC9-4298-A10F-352A14D755BF",
+          "GroupingIdentifier": "49ECDD99-8515-4568-8621-739A2FFE0625",
+          "WFControlFlowMode": 2
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+        "WFWorkflowActionParameters": {
+          "GroupingIdentifier": "F6433C8D-FE36-4FEC-B371-FED6DA7068DF",
+          "WFControlFlowMode": 1
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.text.replace",
+        "WFWorkflowActionParameters": {
+          "WFReplaceTextRegularExpression": true,
+          "WFReplaceTextReplace": "sign=$1&leftDec=$2&leftBin=&rightDec=0$3&rightBin=",
+          "CustomOutputName": "Input",
+          "UUID": "C5342F86-B72E-403E-B098-BE3D7AA76BF0",
+          "WFReplaceTextCaseSensitive": false,
+          "WFReplaceTextFind": "(\\-?)(\\d+)([.,]\\d+)?$"
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.runworkflow",
+        "WFWorkflowActionParameters": {
+          "WFWorkflowName": "ch-decimal to binary",
+          "WFShowWorkflow": false
+        }
+      },
+      {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+        "WFWorkflowActionParameters": {
+          "GroupingIdentifier": "F6433C8D-FE36-4FEC-B371-FED6DA7068DF",
+          "WFControlFlowMode": 2
+        }
+      }
+    ]
+  }
+]

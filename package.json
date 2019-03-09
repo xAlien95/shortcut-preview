@@ -1,0 +1,58 @@
+{
+  "name": "shortcut-preview",
+  "description": "A React component to preview iOS Shortcuts",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": {
+    "name": "Stefano De Carolis",
+    "url": "https://github.com/xAlien95"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xAlien95/shortcut-preview.git"
+  },
+  "keywords": [
+    "shortcuts",
+    "react"
+  ],
+  "homepage": "http://xalien95.github.io/shortcut-preview",
+  "main": "src/component/index.ts",
+  "files": [
+    "src/actions",
+    "src/component",
+    "src/interfaces"
+  ],
+  "dependencies": {
+    "@types/jest": "24.0.9",
+    "@types/node": "11.10.4",
+    "@types/react": "16.8.6",
+    "@types/react-dom": "16.8.2",
+    "node-sass": "^4.11.0",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-scripts": "2.1.8",
+    "typescript": "3.3.3333"
+  },
+  "devDependencies": {
+    "bplist-parser": "^0.1.1",
+    "gh-pages": "^2.0.1",
+    "prettier": "^1.16.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

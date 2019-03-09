@@ -1,0 +1,48 @@
+$icon-number: 123;
+
+.icon {
+  --size: 29px;
+
+  width: var(--size);
+  height: var(--size);
+
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+
+  @for $i from 0 through $icon-number {
+    &.i-#{$i} {
+      background-image: url('./icons@2x.png');
+      background-size: calc(10 * var(--size)) calc(#{ceil($icon-number / 10)} * var(--size));
+      background-position: calc(#{-1 * ($i % 10)} * var(--size)) calc(#{-1 * floor($i / 10)} * var(--size));
+    }
+  }
+
+  // WIP: relative sizes
+  &.i-calendar {
+    background: #ffffff;
+    border-radius: 6.5px;
+    padding: 4px 0;
+
+    span {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+
+    span:first-child {
+      height: 5px;
+      line-height: 5px;
+      font-size: 5px;
+      color: red;
+      overflow: hidden;
+    }
+
+    span:last-child {
+      line-height: 16px;
+      font-weight: 100;
+      font-size: 18px;
+      color: black;
+    }
+  }
+}

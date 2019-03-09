@@ -1,0 +1,51 @@
+const identifier = 'is.workflow.actions.text.match.getgroup';
+const icon = 'Text';
+
+const WFAction = {
+  ActionClass: 'WFGetGroupFromMatchedTextAction',
+  ActionKeywords: ['finding', 'matching', 'searching', 'regular', 'expression', 'regexp'],
+  CreationDate: '2016-05-23T07:00:00.000Z',
+  Description: {
+    DescriptionSummary:
+      'Gets the text that matched a particular capture group or all of the capture groups from the output of a Match Text action.',
+  },
+  Input: {
+    Multiple: true,
+    Required: true,
+    Types: ['WFTextMatch'],
+  },
+  InputPassthrough: false,
+  Name: 'Get Group from Matched Text',
+  Output: {
+    Multiple: true,
+    OutputName: 'Group from Matched Text',
+    Types: ['NSString'],
+  },
+  Parameters: [
+    {
+      Class: 'WFEnumerationParameter',
+      DefaultValue: 'Group At Index',
+      Items: ['Group At Index', 'All Groups'],
+      Key: 'WFGetGroupType',
+      Label: 'Get',
+    },
+    {
+      Class: 'WFNumberFieldParameter',
+      DefaultValue: 1,
+      Key: 'WFGroupIndex',
+      Label: 'Group Index',
+      Placeholder: '1',
+      RequiredResources: [
+        {
+          WFParameterKey: 'WFGetGroupType',
+          WFParameterRelation: '!=',
+          WFParameterValue: 'All Groups',
+          WFResourceClass: 'WFParameterRelationResource',
+        },
+      ],
+      TextAlignment: 'Right',
+    },
+  ],
+};
+
+export { identifier, icon, WFAction };

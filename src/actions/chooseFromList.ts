@@ -1,0 +1,63 @@
+const identifier = 'is.workflow.actions.choosefromlist';
+const icon = 'Scripting';
+
+const WFAction = {
+  ActionClass: 'WFChooseFromListAction',
+  ActionKeywords: ['choose', 'select', 'list', 'options', 'menu', 'multiple'],
+  CreationDate: '2014-02-05T06:00:00.000Z',
+  Description: {
+    DescriptionSummary:
+      "Presents a menu of the items passed as input to the action and outputs the user's selection.",
+  },
+  Input: {
+    Multiple: true,
+    Required: true,
+    TypePassthrough: true,
+    Types: ['WFImageContentItem', 'WFDictionaryContentItem', 'WFContentItem'],
+  },
+  LastModifiedDate: '2016-11-29T06:00:00.000Z',
+  Name: 'Choose from List',
+  Output: {
+    Multiple: false,
+    OutputName: 'Chosen Item',
+    Types: ['WFContentItem'],
+  },
+  Parameters: [
+    {
+      Class: 'WFTextInputParameter',
+      DefaultValue: '',
+      Description: 'The instruction provided when the list is presented.',
+      DisallowedVariableTypes: ['Ask'],
+      Key: 'WFChooseFromListActionPrompt',
+      Label: 'Prompt',
+      Placeholder: 'optional',
+      TextAlignment: 'Right',
+    },
+    {
+      Class: 'WFSwitchParameter',
+      DefaultValue: false,
+      Description: 'When enabled, multiple items may be chosen from the list.',
+      Key: 'WFChooseFromListActionSelectMultiple',
+      Label: 'Select Multiple',
+    },
+    {
+      Class: 'WFSwitchParameter',
+      DefaultValue: false,
+      Description:
+        'When enabled, all of the items in the list will start out selected when Choose from List is presented.',
+      Key: 'WFChooseFromListActionSelectAll',
+      Label: 'Select All Initially',
+      RequiredResources: [
+        {
+          WFParameterKey: 'WFChooseFromListActionSelectMultiple',
+          WFParameterValue: true,
+          WFResourceClass: 'WFParameterRelationResource',
+        },
+      ],
+    },
+  ],
+  RequiredResources: ['WFUserInteractionResource'],
+  UserInterfaces: ['WatchKit', 'UIKit', 'UIKitWidget'],
+};
+
+export { identifier, icon, WFAction };
