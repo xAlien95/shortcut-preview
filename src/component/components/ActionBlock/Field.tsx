@@ -17,16 +17,20 @@ export default ({
   value,
   data: { Placeholder, Multiline = false, TextAlignment = 'Left' },
   className,
-}: Props) => (
-  <div
-    className={classList({
-      [styles.field]: true,
-      [styles.right]: TextAlignment === 'Right',
-      [styles.multiline]: Multiline,
-      [styles.placeholder]: value === undefined,
-      ...(className && { [className]: true }),
-    })}
-  >
-    {value !== undefined ? value : Placeholder}
-  </div>
-);
+}: Props) => {
+  const hasPlaceholder = value === undefined || value === '';
+
+  return (
+    <div
+      className={classList({
+        [styles.field]: true,
+        [styles.right]: TextAlignment === 'Right',
+        [styles.multiline]: Multiline,
+        [styles.placeholder]: hasPlaceholder,
+        ...(className && { [className]: true }),
+      })}
+    >
+      {hasPlaceholder ? Placeholder : value}
+    </div>
+  );
+};

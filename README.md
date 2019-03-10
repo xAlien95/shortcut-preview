@@ -2,9 +2,19 @@
 
 A React component to preview iOS Shortcuts.
 
-See a preview of the component on https://xalien95.github.io/shortcut-preview/.
+![Screenshot](https://i.imgur.com/FRCsrSG.png)
 
-## Usage
+See the component in action on https://xalien95.github.io/shortcut-preview/.
+
+## Installation
+
+You can install this component using NPM:
+
+```
+npm i shortcut-preview
+```
+
+### Usage
 
 ```tsx
 import React from 'react';

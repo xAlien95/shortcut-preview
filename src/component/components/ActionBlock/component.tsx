@@ -76,9 +76,7 @@ export default class ActionBlock extends React.Component<Props> {
   }
 
   getParameterInput = (Param: any, value: any) => {
-    if (value === '' && Param.Placeholder) {
-      value = undefined;
-    } else if (value && value.WFSerializationType) {
+    if (value && value.WFSerializationType) {
       switch (value.WFSerializationType) {
         case 'WFTextTokenAttachment':
         case 'WFTextTokenString':
@@ -444,9 +442,8 @@ export default class ActionBlock extends React.Component<Props> {
                           return WFParameterValues.map(relation)[
                             WFParameterRelation === '==' ? 'some' : 'every'
                           ](Boolean);
-                        } else {
-                          return relation(WFParameterValue);
                         }
+                        return relation(WFParameterValue);
                       case 'WFWorkflowTypeResource':
                         switch (WFWorkflowType) {
                           case 'WatchKit':
@@ -485,7 +482,7 @@ export default class ActionBlock extends React.Component<Props> {
                         : this.parseWFValue(WFItem.WFValue);
                     return (
                       <div className={styles.item} key={i}>
-                        <Field data={{}} value={value} />
+                        <Field data={{ Placeholder: 'Text' }} value={value} />
                       </div>
                     );
                   });
@@ -510,8 +507,11 @@ export default class ActionBlock extends React.Component<Props> {
                             })}
                             key={i}
                           >
-                            <Field data={{}} value={key} />
-                            <Field data={{}} value={value} />
+                            <Field data={{ Placeholder: 'Key' }} value={key} />
+                            <Field
+                              data={{ Placeholder: 'Text' }}
+                              value={value}
+                            />
                           </div>
                         );
                       },
