@@ -1,3 +1,8 @@
+$retina: (
+    min-resolution: 192dpi,
+  ),
+  (-webkit-min-device-pixel-ratio: 2);
+
 @function zoomed($length) {
   @return calc(#{$length} * var(--zoom));
 }
@@ -18,13 +23,17 @@
       top: 0;
       width: 1px;
     }
-    background: linear-gradient(
-      to #{$position},
-      transparent 0%,
-      transparent 50%,
-      $color 50%,
-      $color 100%
-    );
+
+    background: $color;
+    @media #{$retina} {
+      background: linear-gradient(
+        to #{$position},
+        transparent 0%,
+        transparent 50%,
+        $color 50%,
+        $color 100%
+      );
+    }
   }
 }
 
@@ -59,9 +68,13 @@
 .actionBlock {
   background: #fefefe;
   border-radius: zoomed(15px);
-  box-shadow: inset 0.5px 0 #cccbcb, inset 0 0.5px #cccbcb,
-    inset -0.5px 0 #cccbcb, inset 0 -0.5px #cccbcb,
-    0 zoomed(4px) zoomed(20px) rgba(0, 0, 0, 0.05);
+  box-shadow: inset 1px 0 #cccbcb, inset 0 1px #cccbcb, inset -1px 0 #cccbcb,
+    inset 0 -1px #cccbcb, 0 zoomed(4px) zoomed(20px) rgba(0, 0, 0, 0.05);
+  @media #{$retina} {
+    box-shadow: inset 0.5px 0 #cccbcb, inset 0 0.5px #cccbcb,
+      inset -0.5px 0 #cccbcb, inset 0 -0.5px #cccbcb,
+      0 zoomed(4px) zoomed(20px) rgba(0, 0, 0, 0.05);
+  }
 
   .header {
     @include thinBorder(#e2e2e2);

@@ -16,9 +16,8 @@ interface Props {
   debug?: boolean;
 }
 
-export default class ShortcutPreview extends React.Component<Props> {
+export default class dataPreview extends React.Component<Props> {
   state = {
-    shortcut: this.props.data,
     magicVariables: {},
   };
 
@@ -103,13 +102,23 @@ export default class ShortcutPreview extends React.Component<Props> {
           />
         );
       case 'Ask':
+        return (
+          <Token
+            key={`variable-${variableIndex++}`}
+            data={{
+              global: true,
+              name: 'Ask When Run',
+              aggrandizement: aggrandizement,
+            }}
+          />
+        );
       case 'Input':
         return (
           <Token
             key={`variable-${variableIndex++}`}
             data={{
               global: true,
-              name: attachment.Type,
+              name: 'Input',
               aggrandizement: aggrandizement,
             }}
           />
@@ -121,7 +130,7 @@ export default class ShortcutPreview extends React.Component<Props> {
             data={{
               global: true,
               name: 'Extension Input',
-              icon: 'ShortcutExtension',
+              icon: 'dataExtension',
               aggrandizement: aggrandizement,
             }}
           />
@@ -135,13 +144,12 @@ export default class ShortcutPreview extends React.Component<Props> {
   };
 
   render() {
-    const { shortcut } = this.state;
-    const { debug = false } = this.props;
+    const { data, debug = false } = this.props;
 
     return (
       <div className={styles.container}>
-        {shortcut &&
-          shortcut[0].WFWorkflowActions.map((WFAction: any, i: number) => {
+        {data &&
+          data[0].WFWorkflowActions.map((WFAction: any, i: number) => {
             const action = Object.values(actions).find(
               ({ identifier }) =>
                 identifier === WFAction.WFWorkflowActionIdentifier,

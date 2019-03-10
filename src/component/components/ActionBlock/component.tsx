@@ -31,32 +31,6 @@ interface Props {
 }
 
 export default class ActionBlock extends React.Component<Props> {
-  state =
-    (this.props.data &&
-      this.props.data.Parameters &&
-      this.props.data.Parameters.reduce(
-        (
-          result: any,
-          { Key, DefaultValue }: { Key: string; DefaultValue?: any },
-        ) => {
-          const value = this.props.value[Key];
-          result[Key] =
-            value !== undefined
-              ? value
-              : DefaultValue !== undefined
-              ? DefaultValue
-              : '';
-          return result;
-        },
-        {},
-      )) ||
-    {};
-
-  hasInput =
-    (this.props.data && this.props.data.Input) ||
-    // TODO: check over the parameters directly
-    JSON.stringify(this.state).includes(`"OutputUUID":"${previousOutputUUID}"`);
-
   constructor(props: Props) {
     super(props);
 
@@ -71,11 +45,10 @@ export default class ActionBlock extends React.Component<Props> {
     if (UUID) {
       let OutputName = data.Output && data.Output.OutputName;
 
-      // "If" action
+      // Missing OutputNames
       if (data.Name === 'If') OutputName = 'If Result';
       if (data.Name === 'Choose from Menu') OutputName = 'Menu Result';
       if (data.Name === 'Filter Files') OutputName = 'Files';
-      // TODO: handle Filter Files (and all the ".filter" actions) parameters
       if (data.Name === 'Get Details of Images')
         OutputName = 'Details of Images';
       if (data.Name === 'Find Music') OutputName = 'Music';
@@ -98,13 +71,11 @@ export default class ActionBlock extends React.Component<Props> {
       previousOutputUUID = UUID;
     }
 
-    // TODO: to be removed
+    // TODO: handle Filter Files (and all the ".filter" actions) parameters
     // if (data.Name === 'Filter Files') console.log(value);
   }
 
-  getParameterInput = (Param: any) => {
-    let value = this.state[Param.Key];
-
+  getParameterInput = (Param: any, value: any) => {
     if (value === '' && Param.Placeholder) {
       value = undefined;
     } else if (value && value.WFSerializationType) {
@@ -283,12 +254,40 @@ export default class ActionBlock extends React.Component<Props> {
   render() {
     const { value, data, icon, missing, indentation, debug } = this.props;
 
+    const parameters =
+      (data &&
+        data.Parameters &&
+        data.Parameters.reduce(
+          (
+            result: any,
+            { Key, DefaultValue }: { Key: string; DefaultValue?: any },
+          ) => {
+            const currentValue = value[Key];
+            result[Key] =
+              currentValue !== undefined
+                ? currentValue
+                : DefaultValue !== undefined
+                ? DefaultValue
+                : '';
+            return result;
+          },
+          {},
+        )) ||
+      {};
+
+    const hasInput =
+      (data && data.Input) ||
+      // TODO: check over the parameters directly
+      JSON.stringify(parameters).includes(
+        `"OutputUUID":"${previousOutputUUID}"`,
+      );
+
     if (missing)
       return (
         <div
           className={classList({
             [styles.actionBlockWrapper]: true,
-            [styles.input]: this.hasInput,
+            [styles.input]: hasInput,
           })}
           style={
             {
@@ -338,7 +337,7 @@ export default class ActionBlock extends React.Component<Props> {
         <div
           className={classList({
             [styles.actionBlockWrapper]: true,
-            [styles.input]: this.hasInput,
+            [styles.input]: hasInput,
           })}
           style={
             {
@@ -364,7 +363,7 @@ export default class ActionBlock extends React.Component<Props> {
       <div
         className={classList({
           [styles.actionBlockWrapper]: true,
-          [styles.input]: this.hasInput,
+          [styles.input]: hasInput,
         })}
         style={
           {
@@ -413,11 +412,11 @@ export default class ActionBlock extends React.Component<Props> {
                         switch (WFParameterRelation) {
                           case '==':
                             relation = (parameterValue: any) =>
-                              this.state[WFParameterKey] === parameterValue;
+                              parameters[WFParameterKey] === parameterValue;
                             break;
                           case '!=':
                             relation = (parameterValue: any) =>
-                              this.state[WFParameterKey] !== parameterValue;
+                              parameters[WFParameterKey] !== parameterValue;
                             break;
                           default:
                             console.error(
@@ -463,7 +462,7 @@ export default class ActionBlock extends React.Component<Props> {
               switch (Param.Class) {
                 case 'WFContentArrayParameter':
                 case 'WFArrayParameter':
-                  return this.state[Param.Key].map((WFItem: any, i: number) => {
+                  return parameters[Param.Key].map((WFItem: any, i: number) => {
                     const value =
                       typeof WFItem === 'string'
                         ? WFItem
@@ -476,8 +475,8 @@ export default class ActionBlock extends React.Component<Props> {
                   });
                 case 'WFDictionaryParameter':
                   return (
-                    this.state[Param.Key].Value &&
-                    this.state[Param.Key].Value.WFDictionaryFieldValueItems.map(
+                    parameters[Param.Key].Value &&
+                    parameters[Param.Key].Value.WFDictionaryFieldValueItems.map(
                       (WFItem: any, i: number) => {
                         const key = this.parseWFValue(WFItem.WFKey);
                         const value = this.parseWFValue(WFItem.WFValue);
@@ -504,7 +503,7 @@ export default class ActionBlock extends React.Component<Props> {
                         Param.Class !== 'WFContentArrayParameter' && (
                           <label>{Param.Label}</label>
                         )}
-                      {this.getParameterInput(Param)}
+                      {this.getParameterInput(Param, parameters[Param.Key])}
                     </div>
                   );
               }
