@@ -25,7 +25,7 @@ export default ({
         className={classList({
           [styles.icon]: true,
           [styles['i-calendar']]: true,
-          className: !!className,
+          ...(className && { [className]: true }),
         })}
       >
         <span>{weekday}</span>
@@ -42,7 +42,7 @@ export default ({
       className={classList({
         [styles.icon]: true,
         [styles[`i-${index}`]]: true,
-        ...(className && { [className]: !!className }),
+        ...(className && { [className]: true }),
       })}
     />
   );

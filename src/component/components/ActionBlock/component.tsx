@@ -203,7 +203,7 @@ export default class ActionBlock extends React.Component<Props> {
     }
   };
 
-  parseWFValue = ({ Value, WFSerializationType }: any) => {
+  parseWFValue = ({ Value, WFSerializationType }: any): any => {
     const RC = '\ufffc'; // replacement character
     const { getVariable } = this.props;
 
@@ -244,6 +244,16 @@ export default class ActionBlock extends React.Component<Props> {
         });
       case 'WFTextTokenAttachment':
         return getVariable(Value);
+      case 'WFArrayParameterState':
+        const arrayLength = Value.length;
+        return arrayLength === 1 ? '1 item' : `${arrayLength} items`;
+      case 'WFDictionaryFieldValue':
+        const dictLength = Value.Value.WFDictionaryFieldValueItems.length;
+        return dictLength === 1 ? '1 item' : `${dictLength} items`;
+      case 'WFNumberSubstitutableState':
+        return Value.WFSerializationType
+          ? this.parseWFValue(Value)
+          : `${Boolean(Value)}`;
       default:
         console.error(
           `[ERROR: Parameter] Unknown Value.WFSerializationType "${WFSerializationType}"`,
@@ -384,7 +394,13 @@ export default class ActionBlock extends React.Component<Props> {
             {debug && (
               <span
                 className={styles.log}
-                onClick={() => console.log(this.state)}
+                onClick={() =>
+                  console.log({
+                    action: name || data.Name,
+                    parameters,
+                    value,
+                  })
+                }
               >
                 LOG
               </span>
@@ -478,8 +494,14 @@ export default class ActionBlock extends React.Component<Props> {
                     parameters[Param.Key].Value &&
                     parameters[Param.Key].Value.WFDictionaryFieldValueItems.map(
                       (WFItem: any, i: number) => {
-                        const key = this.parseWFValue(WFItem.WFKey);
-                        const value = this.parseWFValue(WFItem.WFValue);
+                        const key =
+                          typeof WFItem.WFKey === 'string'
+                            ? WFItem.WFKey
+                            : this.parseWFValue(WFItem.WFKey);
+                        const value =
+                          typeof WFItem.WFValue === 'string'
+                            ? WFItem.WFValue
+                            : this.parseWFValue(WFItem.WFValue);
                         return (
                           <div
                             className={classList({
