@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.preview {
+  flex: 1;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.code {
+  flex: 1;
+  width: 100%;
+  height: 100vh;
+  resize: none;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  padding: 16px;
+}

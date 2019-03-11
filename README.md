@@ -1,20 +1,24 @@
 # Shortcut Preview
 
+ [![npm version](https://img.shields.io/npm/v/shortcut-preview.svg?colorB=blue)](https://www.npmjs.com/package/shortcut-preview)
+![npm](https://img.shields.io/npm/l/shortcut-preview.svg)
+
 A React component to preview iOS Shortcuts.
 
 ![Screenshot](https://i.imgur.com/FRCsrSG.png)
 
-See the component in action on https://xalien95.github.io/shortcut-preview/.
+See the component in action on
+<a href="https://xalien95.github.io/shortcut-preview/" target="_blank" rel="noopener noreferrer">xalien95.github.io/shortcut-preview</a>.
 
 ## Installation
 
-You can install this component using NPM:
+You can install this component using [npm](https://www.npmjs.com/package/shortcut-preview):
 
 ```
 npm i shortcut-preview
 ```
 
-### Usage
+## Usage
 
 ```tsx
 import React from 'react';
@@ -40,7 +44,7 @@ export default class App extends React.Component {
 }
 ```
 
-### Similar Projects
+## Similar Projects
 
 - [shcuts.app](https://github.com/pNre/shcuts.app)
 - [Apple Shortcuts Viewer](https://github.com/BobRazowsky/shortcuts)
