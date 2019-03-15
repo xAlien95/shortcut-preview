@@ -10,7 +10,6 @@ interface Props {
 
 export default class Select extends React.Component<Props> {
   state = {
-    selected: this.props.value || 'Choose',
     segmented: true,
   };
 
@@ -23,7 +22,6 @@ export default class Select extends React.Component<Props> {
 
       const parent = node.parentElement!;
       const max = Math.max(
-        // @ts-ignore
         ...[...node.children].map(({ clientWidth }) => clientWidth),
       );
       const width = this.props.values.length * (max + 1) + 1;
@@ -41,7 +39,10 @@ export default class Select extends React.Component<Props> {
   }
 
   render() {
-    const { selected, segmented } = this.state;
+    const { segmented } = this.state;
+    const { value, values } = this.props;
+
+    const selected = values.includes(value) ? value : 'Choose';
 
     return (
       <div

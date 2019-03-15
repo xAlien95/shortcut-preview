@@ -1,7 +1,7 @@
 {
   "name": "shortcut-preview",
   "description": "A React component to preview iOS Shortcuts",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "author": {
     "name": "Stefano De Carolis",
@@ -20,22 +20,21 @@
   "homepage": "http://xalien95.github.io/shortcut-preview",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "dependencies": {
-    "@types/jest": "24.0.9",
-    "@types/node": "11.10.4",
-    "@types/react": "16.8.6",
-    "@types/react-dom": "16.8.2",
-    "node-sass": "^4.11.0",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
-    "react-scripts": "2.1.8",
-    "typescript": "3.3.3333"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.2.3",
+    "@types/jest": "^24.0.9",
+    "@types/node": "^11.10.4",
+    "@types/react": "^16.8.6",
+    "@types/react-dom": "^16.8.2",
     "bplist-parser": "^0.1.1",
     "gh-pages": "^2.0.1",
-    "prettier": "^1.16.4"
+    "node-sass": "^4.11.0",
+    "prettier": "^1.16.4",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-scripts": "^2.1.8",
+    "typescript": "^3.3.3333"
   },
   "scripts": {
     "start": "react-scripts start",
