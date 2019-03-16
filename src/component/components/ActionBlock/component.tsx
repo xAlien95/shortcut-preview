@@ -197,7 +197,13 @@ export default class ActionBlock extends React.Component<Props> {
         );
       default:
         console.error(`[ERROR: Parameter] Unknown Class "${Param.Class}"`);
-        return null;
+        return (
+          <Field
+            data={Param}
+            value="This field hasn't yet been implemented"
+            className={styles.notImplemented}
+          />
+        );
     }
   };
 

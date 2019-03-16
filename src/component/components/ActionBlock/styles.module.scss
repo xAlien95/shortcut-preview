@@ -221,6 +221,11 @@ $retina: (
     padding: 0 zoomed(12px);
   }
 
+  &.notImplemented {
+    color: #ec3e3e;
+    font-style: italic;
+  }
+
   .getFileInitialPath {
     color: var(--gray-color);
   }
