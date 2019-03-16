@@ -297,11 +297,9 @@ export default class ActionBlock extends React.Component<Props> {
             [styles.actionBlockWrapper]: true,
             [styles.input]: hasInput,
           })}
-          style={
-            {
-              '--indent': indentation,
-            } as any
-          }
+          style={{
+            '--indent': indentation,
+          }}
         >
           <div
             className={classList({
