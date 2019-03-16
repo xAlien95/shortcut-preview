@@ -1,5 +1,5 @@
 {
-  "main.css": "/shortcut-preview/static/css/main.082a77c1.chunk.css",
+  "main.css": "/shortcut-preview/static/css/main.aaab2124.chunk.css",
   "main.js": "/shortcut-preview/static/js/main.805503be.chunk.js",
   "main.js.map": "/shortcut-preview/static/js/main.805503be.chunk.js.map",
   "runtime~main.js": "/shortcut-preview/static/js/runtime~main.eabeac8d.js",
@@ -7,8 +7,8 @@
   "static/js/2.a0650a2c.chunk.js": "/shortcut-preview/static/js/2.a0650a2c.chunk.js",
   "static/js/2.a0650a2c.chunk.js.map": "/shortcut-preview/static/js/2.a0650a2c.chunk.js.map",
   "index.html": "/shortcut-preview/index.html",
-  "precache-manifest.4d4072b3b9eb92b4575e47701436c465.js": "/shortcut-preview/precache-manifest.4d4072b3b9eb92b4575e47701436c465.js",
+  "precache-manifest.fc999bcf99888b3fd974d65fc73a0217.js": "/shortcut-preview/precache-manifest.fc999bcf99888b3fd974d65fc73a0217.js",
   "service-worker.js": "/shortcut-preview/service-worker.js",
-  "static/css/main.082a77c1.chunk.css.map": "/shortcut-preview/static/css/main.082a77c1.chunk.css.map",
+  "static/css/main.aaab2124.chunk.css.map": "/shortcut-preview/static/css/main.aaab2124.chunk.css.map",
   "static/media/styles.module.scss": "/shortcut-preview/static/media/icons@2x.be523089.png"
 }
