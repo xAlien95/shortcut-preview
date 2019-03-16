@@ -6,7 +6,8 @@
 .preview {
   flex: 1;
   height: 100vh;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .code {
