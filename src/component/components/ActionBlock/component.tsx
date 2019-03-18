@@ -27,7 +27,7 @@ interface Props {
     name: string;
     icon: string;
   }) => void;
-  debug: boolean;
+  metadata: { debug: boolean; expanded: boolean; safari: boolean };
 }
 
 export default class ActionBlock extends React.Component<Props> {
@@ -142,6 +142,9 @@ export default class ActionBlock extends React.Component<Props> {
                 ? this.parseWFValue(value)
                 : value
             }
+            className={classList({
+              [styles.expanded]: this.props.metadata.expanded,
+            })}
           />
         );
       case 'WFVariablePickerParameter':
@@ -266,7 +269,7 @@ export default class ActionBlock extends React.Component<Props> {
   };
 
   render() {
-    const { value, data, icon, missing, indentation, debug } = this.props;
+    const { value, data, icon, missing, indentation, metadata } = this.props;
 
     const parameters =
       (data &&
@@ -311,6 +314,7 @@ export default class ActionBlock extends React.Component<Props> {
             className={classList({
               [styles.actionBlock]: true,
               [styles.missing]: true,
+              [styles.safari]: metadata.safari,
             })}
           >
             <div className={styles.header}>
@@ -361,6 +365,7 @@ export default class ActionBlock extends React.Component<Props> {
             className={classList({
               [styles.actionBlock]: true,
               [styles.noIcon]: true,
+              [styles.safari]: metadata.safari,
             })}
           >
             <div className={styles.header}>
@@ -387,13 +392,14 @@ export default class ActionBlock extends React.Component<Props> {
           className={classList({
             [styles.actionBlock]: true,
             [styles.comment]: data.Name === 'Comment',
+            [styles.safari]: metadata.safari,
           })}
         >
           <div className={styles.header}>
             <Icon name={icon} className={styles.icon} />
             <span className={styles.title}>{name || data.Name}</span>
 
-            {debug && (
+            {metadata.debug && (
               <span
                 className={styles.log}
                 onClick={() =>

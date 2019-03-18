@@ -14,11 +14,15 @@ const flowModes: number[] = [];
 interface Props {
   data: any;
   debug?: boolean;
+  expanded?: boolean;
 }
 
 export default class dataPreview extends React.Component<Props> {
   state = {
     magicVariables: {},
+    safari:
+      navigator.userAgent.includes('Safari') &&
+      !navigator.userAgent.includes('Chrome'),
   };
 
   addVariable = ({
@@ -144,7 +148,8 @@ export default class dataPreview extends React.Component<Props> {
   };
 
   render() {
-    const { data, debug = false } = this.props;
+    const { data, debug = false, expanded = false } = this.props;
+    const { safari } = this.state;
 
     return (
       <div className={styles.container}>
@@ -184,7 +189,7 @@ export default class dataPreview extends React.Component<Props> {
                 indentation={indents[i]}
                 getVariable={this.getVariable}
                 onVariable={this.addVariable}
-                debug={debug}
+                metadata={{ debug, expanded, safari }}
                 {...blockProps}
               />
             );

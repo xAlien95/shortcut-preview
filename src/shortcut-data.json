@@ -36,6 +36,12 @@
     ],
     "WFWorkflowActions": [
       {
+        "WFWorkflowActionIdentifier": "is.workflow.actions.comment",
+        "WFWorkflowActionParameters": {
+          "WFCommentActionText": "Made by xAlien95\n\nFirst line\nSecond line\nThird line\nFourth line\nFifth line\nSixth line\n...\nN-th line"
+        }
+      },
+      {
         "WFWorkflowActionIdentifier": "is.workflow.actions.setvariable",
         "WFWorkflowActionParameters": {
           "WFVariableName": "Input"

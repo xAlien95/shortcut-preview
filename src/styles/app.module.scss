@@ -4,10 +4,83 @@
 }
 
 .preview {
+  $color: #808080;
+
   flex: 1;
   height: 100vh;
   overflow-x: hidden;
   overflow-y: scroll;
+  -webkit-user-select: none;
+
+  .props {
+    color: $color;
+    width: 240px;
+    margin: 16px auto 0;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    padding-left: 8px;
+  }
+
+  .buttons {
+    width: 240px;
+    margin: 10px auto 40px;
+    border-radius: 8px;
+    border: 1px solid $color;
+    cursor: pointer;
+
+    .button {
+      position: relative;
+      line-height: 20px;
+      padding: 6px 6px 6px 16px;
+      color: $color;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+
+      &:not(:last-child)::after {
+        content: '';
+        display: block;
+        height: 1px;
+        left: 8px;
+        bottom: 0;
+        right: 0;
+        background: $color;
+        position: absolute;
+      }
+
+      .switch {
+        float: right;
+        display: block;
+        width: 32px;
+        height: 18px;
+        border-radius: 10px;
+        background-color: white;
+        border: 1px solid #dadde2;
+        position: relative;
+
+        small {
+          position: absolute;
+          top: 1px;
+          left: 1px;
+          width: 16px;
+          height: 16px;
+          background: white;
+          border-radius: 100%;
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        &.checked {
+          background-color: $color;
+          border-color: $color;
+
+          small {
+            left: 15px;
+          }
+        }
+      }
+    }
+  }
 }
 
 .code {
@@ -19,6 +92,7 @@
   outline: none;
   -webkit-appearance: none;
   box-sizing: border-box;
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
   padding: 16px;
 }
