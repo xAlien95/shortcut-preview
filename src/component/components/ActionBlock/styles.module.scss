@@ -128,7 +128,14 @@ $retina: (
 
   &.comment {
     background: #f8f6e8;
-    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 zoomed(4px) zoomed(20px) rgba(0, 0, 0, 0.05);
+
+    @media #{$retina} {
+      // Safari
+      &.safari {
+        border: none;
+      }
+    }
 
     .header {
       @include thinBorder(#e8d3a5);
@@ -309,6 +316,11 @@ $retina: (
       &.selected {
         color: var(--white-color);
         background: var(--ios-blue-color);
+      }
+
+      .stepper & {
+        font-size: zoomed(27px);
+        font-weight: 200;
       }
     }
   }

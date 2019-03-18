@@ -527,6 +527,43 @@ export default class ActionBlock extends React.Component<Props> {
                       },
                     )
                   );
+                case 'WFStepperParameter':
+                  const {
+                    StepperDescription,
+                    StepperPrefix,
+                    StepperNoun,
+                    StepperPluralNoun,
+                  } = Param;
+                  const count = parameters[Param.Key];
+                  return (
+                    <div
+                      className={classList({
+                        [styles.item]: true,
+                        [styles.stepper]: true,
+                      })}
+                      key={i}
+                    >
+                      {count && count.WFSerializationType ? (
+                        <React.Fragment>
+                          <label>{StepperDescription}</label>
+                          <Field
+                            data={{ TextAlignment: 'Right' }}
+                            value={this.parseWFValue(count)}
+                          />
+                        </React.Fragment>
+                      ) : (
+                        <React.Fragment>
+                          <label>
+                            {StepperPrefix}
+                            {` ${count} ${
+                              count === 1 ? StepperNoun : StepperPluralNoun
+                            }`}
+                          </label>
+                          <Select values={['-', '+']} value="" />
+                        </React.Fragment>
+                      )}
+                    </div>
+                  );
                 default:
                   return (
                     <div className={styles.item} key={i}>
