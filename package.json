@@ -1,7 +1,7 @@
 {
   "name": "shortcut-preview",
   "description": "A React component to preview iOS Shortcuts",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "license": "MIT",
   "author": {
     "name": "Stefano De Carolis",

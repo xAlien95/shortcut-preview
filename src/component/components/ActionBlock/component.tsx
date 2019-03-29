@@ -5,11 +5,14 @@ import Icon from '../ActionIcon';
 import Field from './Field';
 import Select from './Select';
 import AppField from './AppField';
+import Token from './Token';
 
 import { classList } from '../utils';
 import styles from './styles.module.scss';
 
+let variableIndex = 0;
 let previousOutputUUID = '';
+const magicVariables: { [uuid: string]: { name: string; icon: string } } = {};
 
 interface Props {
   data?: any;
@@ -17,16 +20,6 @@ interface Props {
   icon?: string;
   missing?: string;
   indentation: number;
-  getVariable: (attachment: any) => JSX.Element | null;
-  onVariable: ({
-    uuid,
-    name,
-    icon,
-  }: {
-    uuid: string;
-    name: string;
-    icon: string;
-  }) => void;
   metadata: { debug: boolean; expanded: boolean; safari: boolean };
 }
 
@@ -34,46 +27,112 @@ export default class ActionBlock extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
-    const {
-      data = {},
-      value = {},
-      icon = 'Placeholder',
-      onVariable,
-    } = this.props;
-    const { UUID, CustomOutputName } = value;
-
-    if (UUID) {
-      let OutputName = data.Output && data.Output.OutputName;
-
-      // Missing OutputNames
-      if (data.Name === 'If') OutputName = 'If Result';
-      if (data.Name === 'Choose from Menu') OutputName = 'Menu Result';
-      if (data.Name === 'Filter Files') OutputName = 'Files';
-      if (data.Name === 'Get Details of Images')
-        OutputName = 'Details of Images';
-      if (data.Name === 'Find Music') OutputName = 'Music';
-      if (data.Name === 'Find Reminders') OutputName = 'Reminders';
-      if (data.Name === 'Find Photos') OutputName = 'Photos';
-      if (data.Name === 'Find Contacts') OutputName = 'Contacts';
-
-      onVariable({
-        uuid: UUID,
-        name:
-          CustomOutputName ||
-          OutputName ||
-          console.error(
-            `[ERROR: OutputName] Unknown OutputName for "${data.Name}" action`,
-          ) ||
-          'UNKNOWN',
-        icon: icon,
-      });
-
-      previousOutputUUID = UUID;
-    }
-
     // TODO: handle Filter Files (and all the ".filter" actions) parameters
     // if (data.Name === 'Filter Files') console.log(value);
   }
+
+  getVariable = (attachment: Attachment) => {
+    const aggrandizement =
+      attachment.Aggrandizements &&
+      attachment.Aggrandizements.map((aggr) => {
+        switch (aggr.Type) {
+          case 'WFDictionaryValueVariableAggrandizement':
+            return aggr.DictionaryKey;
+          case 'WFPropertyVariableAggrandizement':
+            return aggr.PropertyName;
+          default:
+            return;
+        }
+      }).filter(Boolean)[0];
+
+    switch (attachment.Type) {
+      case 'ActionOutput':
+        const variable = (magicVariables as any)[attachment.OutputUUID];
+        return variable ? (
+          <Token
+            key={`variable-${variableIndex++}`}
+            data={{
+              name: variable.name,
+              icon: variable.icon,
+              aggrandizement: aggrandizement,
+            }}
+          />
+        ) : null;
+      case 'Variable':
+        return (
+          <Token
+            key={`variable-${variableIndex++}`}
+            data={{
+              name: attachment.VariableName,
+              aggrandizement: aggrandizement,
+            }}
+          />
+        );
+      case 'Clipboard':
+        return (
+          <Token
+            key={`variable-${variableIndex++}`}
+            data={{
+              global: true,
+              name: 'Clipboard',
+              icon: 'Clipboard',
+              aggrandizement: aggrandizement,
+            }}
+          />
+        );
+      case 'CurrentDate':
+        return (
+          <Token
+            key={`variable-${variableIndex++}`}
+            data={{
+              global: true,
+              name: 'Current Date',
+              icon: 'Date',
+              aggrandizement: aggrandizement,
+            }}
+          />
+        );
+      case 'Ask':
+        return (
+          <Token
+            key={`variable-${variableIndex++}`}
+            data={{
+              global: true,
+              name: 'Ask When Run',
+              aggrandizement: aggrandizement,
+            }}
+          />
+        );
+      case 'Input':
+        return (
+          <Token
+            key={`variable-${variableIndex++}`}
+            data={{
+              global: true,
+              name: 'Input',
+              aggrandizement: aggrandizement,
+            }}
+          />
+        );
+      case 'ExtensionInput':
+        return (
+          <Token
+            key={`variable-${variableIndex++}`}
+            data={{
+              global: true,
+              name: 'Extension Input',
+              icon: 'ShortcutExtension',
+              aggrandizement: aggrandizement,
+            }}
+          />
+        );
+      default:
+        console.error(
+          `[ERROR: Variable] Unknown Type "${(attachment as any).Type}"`,
+        );
+        return null;
+    }
+  };
 
   getParameterInput = (Param: any, value: any) => {
     if (value && value.WFSerializationType) {
@@ -212,7 +271,6 @@ export default class ActionBlock extends React.Component<Props> {
 
   parseWFValue = ({ Value, WFSerializationType }: any): any => {
     const RC = '\ufffc'; // replacement character
-    const { getVariable } = this.props;
 
     switch (WFSerializationType) {
       case 'WFTextTokenString':
@@ -232,7 +290,7 @@ export default class ActionBlock extends React.Component<Props> {
               case 'ExtensionInput':
               case 'Input':
               case 'Variable':
-                tokens[index] = getVariable(attachment);
+                tokens[index] = this.getVariable(attachment);
                 break;
               default:
                 console.error(
@@ -250,7 +308,7 @@ export default class ActionBlock extends React.Component<Props> {
           return [...previous, tokens.shift(), current];
         });
       case 'WFTextTokenAttachment':
-        return getVariable(Value);
+        return this.getVariable(Value);
       case 'WFArrayParameterState':
         const arrayLength = Value.length;
         return arrayLength === 1 ? '1 item' : `${arrayLength} items`;
@@ -270,6 +328,35 @@ export default class ActionBlock extends React.Component<Props> {
 
   render() {
     const { value, data, icon, missing, indentation, metadata } = this.props;
+    const { UUID, CustomOutputName } = value;
+
+    if (UUID) {
+      let OutputName = data.Output && data.Output.OutputName;
+
+      // Missing OutputNames
+      if (data.Name === 'If') OutputName = 'If Result';
+      if (data.Name === 'Choose from Menu') OutputName = 'Menu Result';
+      if (data.Name === 'Filter Files') OutputName = 'Files';
+      if (data.Name === 'Get Details of Images')
+        OutputName = 'Details of Images';
+      if (data.Name === 'Find Music') OutputName = 'Music';
+      if (data.Name === 'Find Reminders') OutputName = 'Reminders';
+      if (data.Name === 'Find Photos') OutputName = 'Photos';
+      if (data.Name === 'Find Contacts') OutputName = 'Contacts';
+
+      magicVariables[UUID] = {
+        name:
+          CustomOutputName ||
+          OutputName ||
+          console.error(
+            `[ERROR: OutputName] Unknown OutputName for "${data.Name}" action`,
+          ) ||
+          'UNKNOWN',
+        icon: icon || 'Placeholder',
+      };
+
+      previousOutputUUID = UUID;
+    }
 
     const parameters =
       (data &&
