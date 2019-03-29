@@ -1,13 +1,13 @@
 {
-  "main.css": "/shortcut-preview/static/css/main.49273aee.chunk.css",
-  "main.js": "/shortcut-preview/static/js/main.9c1915a9.chunk.js",
-  "main.js.map": "/shortcut-preview/static/js/main.9c1915a9.chunk.js.map",
+  "main.css": "/shortcut-preview/static/css/main.f9f8628f.chunk.css",
+  "main.js": "/shortcut-preview/static/js/main.79e585dc.chunk.js",
+  "main.js.map": "/shortcut-preview/static/js/main.79e585dc.chunk.js.map",
   "runtime~main.js": "/shortcut-preview/static/js/runtime~main.eabeac8d.js",
   "runtime~main.js.map": "/shortcut-preview/static/js/runtime~main.eabeac8d.js.map",
-  "static/js/2.d60f193c.chunk.js": "/shortcut-preview/static/js/2.d60f193c.chunk.js",
-  "static/js/2.d60f193c.chunk.js.map": "/shortcut-preview/static/js/2.d60f193c.chunk.js.map",
+  "static/js/2.91a2e775.chunk.js": "/shortcut-preview/static/js/2.91a2e775.chunk.js",
+  "static/js/2.91a2e775.chunk.js.map": "/shortcut-preview/static/js/2.91a2e775.chunk.js.map",
   "index.html": "/shortcut-preview/index.html",
-  "precache-manifest.b09f28434d387c215f0a34609e988db0.js": "/shortcut-preview/precache-manifest.b09f28434d387c215f0a34609e988db0.js",
+  "precache-manifest.c6e9518a49fa340ab5f1734379cdaa87.js": "/shortcut-preview/precache-manifest.c6e9518a49fa340ab5f1734379cdaa87.js",
   "service-worker.js": "/shortcut-preview/service-worker.js",
-  "static/css/main.49273aee.chunk.css.map": "/shortcut-preview/static/css/main.49273aee.chunk.css.map"
+  "static/css/main.f9f8628f.chunk.css.map": "/shortcut-preview/static/css/main.f9f8628f.chunk.css.map"
 }
